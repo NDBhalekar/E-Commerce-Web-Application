@@ -1,0 +1,198 @@
+/* ===== GLOBAL CARD STYLE ===== */
+.card {
+    border-radius: 16px !important;
+    background: #fff;
+    border: 1px solid #e5e7eb !important;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.04) !important;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    transition: 0.25s;
+}
+
+/* ===== IMAGE ===== */
+.main-image {
+    width: 100%;
+    height: 420px;
+    object-fit: cover;
+}
+
+/* ===== WISHLIST ===== */
+.wishlist-btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+
+    background: rgba(255,255,255,0.8);
+    backdrop-filter: blur(8px);
+
+    border: 1px solid #e5e7eb;
+    border-radius: 999px;
+
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: 0.2s;
+}
+
+.wishlist-btn:hover {
+    background: #fff;
+    transform: scale(1.05);
+}
+
+/* ===== BUY BOX ===== */
+.buy-box {
+    position: sticky;
+    top: 100px;
+}
+
+/* PRICE */
+.buy-box h2 {
+    font-size: 28px;
+}
+
+/* BUTTONS */
+.btn-warning {
+    background: #111827;
+    border: none;
+    color: #fff;
+}
+
+.btn-warning:hover {
+    background: #1f2937;
+}
+
+.btn-dark {
+    background: #f3f4f6;
+    color: #111827;
+    border: none;
+}
+
+.btn-dark:hover {
+    background: #e5e7eb;
+}
+
+/* ===== DESCRIPTION ===== */
+.card h5 {
+    font-size: 18px;
+}
+
+/* ===== REVIEWS ===== */
+.review-item {
+    border-bottom: 1px solid #f1f5f9;
+}
+
+/* AVATAR */
+.review-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #111827;
+    color: #fff;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-weight: 600;
+}
+
+/* STARS */
+.review-stars {
+    letter-spacing: 2px;
+}
+
+/* REVIEW SCORE */
+.review-score {
+    font-weight: 600;
+}
+
+/* ===== REVIEW FORM ===== */
+.star-rating .star {
+    font-size: 18px;
+    cursor: pointer;
+    color: #d1d5db;
+    transition: 0.2s;
+}
+
+.star-rating .star:hover,
+.star-rating .star.active {
+    color: #f59e0b;
+}
+
+/* TEXTAREA */
+textarea.form-control {
+    border-radius: 12px;
+}
+
+/* ===== INPUT ===== */
+input.form-control {
+    border-radius: 10px;
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 768px) {
+
+    .main-image {
+        height: 280px;
+    }
+
+    .buy-box {
+        position: static;
+    }
+
+}
+
+/* ===== RESET BOOTSTRAP BUTTON ===== */
+.btn {
+    transition: all 0.2s ease;
+}
+
+/* ===== PRIMARY (DARK) ===== */
+.btn-primary,
+.btn-warning {   
+    background: #111827 !important;
+    color: #fff !important;
+    border: none !important;
+}
+
+.btn-primary:hover,
+.btn-warning:hover {
+    background: #1f2937 !important;
+    color: #fff !important; 
+}
+
+/* ===== SECONDARY (LIGHT) ===== */
+.btn-secondary,
+.btn-dark {   
+    background: #f3f4f6 !important;
+    color: #111827 !important;
+    border: none !important;
+}
+
+.btn-secondary:hover,
+.btn-dark:hover {
+    background: #e5e7eb !important;
+    color: #111827 !important;  
+}
+
+/* ===== OUTLINE ===== */
+.btn-outline-dark {
+    border: 1px solid #e5e7eb;
+    color: #111827;
+}
+
+.btn-outline-dark:hover {
+    background: #111827;
+    color: #fff;
+}
+
+/* ===== DANGER ===== */
+.btn-outline-danger:hover {
+    color: #fff !important;
+}

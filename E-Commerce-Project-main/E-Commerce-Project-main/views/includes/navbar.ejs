@@ -1,0 +1,88 @@
+<nav class="lumina-navbar-wrapper sticky-top">
+    <div class="container-fluid px-4">
+
+        <div class="lumina-navbar">
+
+            <!-- Left -->
+            <a href="/listings" class="brand d-flex align-items-center">
+                <div class="logo-box">eCS</div>
+                <span class="brand-name">E-Commerce Store</span>
+            </a>
+
+            <!-- Center (desktop only) -->
+            <div class="nav-center d-none d-md-flex">
+                <a href="/" class="nav-link-custom">Home</a>
+                <a href="/listings" class="nav-link-custom">Products</a>
+                <a href="/orders" class="nav-link-custom">My Orders</a>
+                <a href="/about" class="nav-link-custom">About</a>
+            </div>
+
+            <!-- Search -->
+            <form action="/listings" method="get" class="search-wrapper d-none d-lg-flex">
+                <input
+                    type="text"
+                    name="q"
+                    value="<%= searchQuery %>"
+                    placeholder="Search products..."
+                    aria-label="Search products"
+                />
+                <button type="submit" class="search-submit" aria-label="Submit search">
+                    <i class="fas fa-search"></i>
+                </button>
+            </form>
+
+            <!-- Right -->
+            <div class="nav-right d-flex align-items-center">
+
+                
+                <a href="/listing/new" class="admin-btn d-none d-md-inline">Add Product</a>
+                
+
+                <a href="/cart" class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <% if ( cartCount > 0) { %>
+                        <span class="cart-badge"><%= cartCount %></span>
+                    <% } %>
+                </a>
+
+                <% if (!currUser) { %>
+                    <a href="/login" class="login-btn d-none d-md-inline">Log in</a>
+                <% } else { %>
+                    <a href="/logout" class="login-btn d-none d-md-inline">Logout</a>
+                <% } %>
+
+                <!-- HAMBURGER -->
+                <button class="hamburger d-md-none" id="hamburgerBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+
+    <a href="/">Home</a>
+    <a href="/listings">Products</a>
+    <% if (currUser) { %>
+        <a href="/orders">My Orders</a>
+    <% } %>
+    <a href="/about">About</a>
+
+    <hr>
+
+    <% if (currUser && currUser.role === "admin") { %>
+        <a href="/listing/new">Add Product</a>
+    <% } %>
+
+    <% if (!currUser) { %>
+        <a href="/login">Login</a>
+    <% } else { %>
+        <a href="/logout">Logout</a>
+    <% } %>
+
+</div>

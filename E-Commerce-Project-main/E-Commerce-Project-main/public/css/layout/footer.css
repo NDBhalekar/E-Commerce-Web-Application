@@ -1,0 +1,81 @@
+/* ===== FOOTER BASE ===== */
+.lumina-footer {
+    background: #ffffff;
+    border-top: 1px solid #e5e7eb;
+    margin-top: 60px;
+    padding-top: 40px;
+}
+
+/* ===== CONTAINER ===== */
+.footer-container {
+    max-width: 1200px;
+    margin: auto;
+}
+
+/* ===== BRAND ===== */
+.footer-brand .logo-box {
+    width: 34px;
+    height: 34px;
+    background: #111827;
+    color: #fff;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+}
+
+.brand-name {
+    font-weight: 600;
+    font-size: 16px;
+}
+
+/* ===== TEXT ===== */
+.footer-text {
+    color: #6b7280;
+    font-size: 14px;
+}
+
+/* ===== HEADINGS ===== */
+.footer-heading {
+    font-weight: 600;
+    margin-bottom: 12px;
+    font-size: 14px;
+}
+
+/* ===== LINKS ===== */
+.footer-links {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links li {
+    margin-bottom: 8px;
+}
+
+.footer-links a {
+    text-decoration: none;
+    color: #6b7280;
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+.footer-links a:hover {
+    color: #111827;
+}
+
+/* ===== BOTTOM ===== */
+.footer-bottom {
+    border-top: 1px solid #e5e7eb;
+    padding: 16px 0;
+    margin-top: 20px;
+    font-size: 13px;
+    color: #9ca3af;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+    .footer-container {
+        padding: 0 16px;
+    }
+}

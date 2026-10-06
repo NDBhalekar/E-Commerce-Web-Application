@@ -1,0 +1,109 @@
+<% layout("/layouts/boilerplate") %>
+
+<div class="auth-container">
+
+    <!-- LEFT SIDE -->
+    <div class="auth-left">
+        <div class="auth-left-content">
+
+            <h1 class="auth-brand">e-Commerce Store</h1>
+
+            <h2 class="auth-heading">Create your account</h2>
+
+            <p class="auth-subtext">
+                Join and start buying or selling with ease.
+            </p>
+
+            <div class="auth-features">
+                <div class="feature-pill"> Secure</div>
+                <div class="feature-pill"> Fast Setup</div>
+                <div class="feature-pill"> Easy Orders</div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- RIGHT SIDE -->
+    <div class="auth-right">
+        <div class="auth-card">
+
+            <h2 class="form-title">Sign up</h2>
+            <p class="form-subtitle">It takes less than a minute.</p>
+
+            <form action="/signup" method="POST">
+
+                <!-- Username -->
+                <div class="form-group">
+                    <label>Username</label>
+                    <input
+                        type="text"
+                        name="username"
+                        required
+                        minlength="3"
+                        maxlength="20"
+                        placeholder="Choose a username"
+                    />
+                </div>
+
+                <!-- Email -->
+                <div class="form-group">
+                    <label>Email</label>
+                    <input
+                        type="email"
+                        name="email"
+                        required
+                        placeholder="you@example.com"
+                    />
+                </div>
+
+                <!-- Phone -->
+                <div class="form-group">
+                    <label>Phone</label>
+                    <input
+                        type="tel"
+                        name="phone_no"
+                        required
+                        placeholder="1234567890"
+                    />
+                </div>
+
+                <!-- Password -->
+                <div class="form-group">
+                    <label>Password</label>
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        required
+                        minlength="8"
+                        placeholder="At least 8 characters"
+                    />
+                </div>
+
+                <!-- Confirm Password -->
+                <div class="form-group">
+                    <label>Confirm Password</label>
+                    <input
+                        type="password"
+                        name="confirmPassword"
+                        required
+                        placeholder="Re-enter password"
+                    />
+                </div>
+
+                <!-- Submit -->
+                <button class="submit-btn">
+                    Create Account
+                </button>
+
+            </form>
+
+            <p class="auth-footer">
+                Already have an account?
+                <a href="/login">Sign in</a>
+            </p>
+
+        </div>
+    </div>
+
+</div>

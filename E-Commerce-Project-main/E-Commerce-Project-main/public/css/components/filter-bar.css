@@ -1,0 +1,59 @@
+.filter-island-wrapper {
+    display: flex;
+    justify-content: center;
+    margin: 24px 0 32px;
+}
+
+.filter-island {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 16px;
+    background: #ffffff;
+    border-radius: 999px;
+    box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.08),
+        0 2px 6px rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+
+.filter-island::-webkit-scrollbar {
+    display: none;
+}
+
+.filter-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 999px;
+    background: transparent;
+    color: #04363a;
+    font-weight: 600;
+    font-size: 0.85rem;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.filter-chip i {
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+.filter-chip:hover {
+    background: rgba(0, 191, 165, 0.12);
+}
+
+.filter-chip.active {
+    background: linear-gradient(135deg, #23e5db, #00bfa5);
+    color: #04363a;
+    box-shadow: 0 6px 16px rgba(0, 191, 165, 0.35);
+}
+
+.filter-chip.active i {
+    opacity: 1;
+}

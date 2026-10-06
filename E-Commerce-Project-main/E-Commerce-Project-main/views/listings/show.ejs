@@ -1,0 +1,258 @@
+<% layout("/layouts/boilerplate") %>
+
+<div class="row g-4">
+    <div class="col-lg-7">
+        <div class="card border-0 shadow-sm rounded-4 p-3 position-relative">
+            <img
+                src="<%= listing.image.url %>"
+                id="mainImage"
+                class="img-fluid rounded-4 main-image"
+                alt="<%= listing.title %>"
+            />
+
+            <button class="wishlist-btn" type="button" aria-label="Save listing">
+                <i class="far fa-heart"></i>
+            </button>
+        </div>
+
+        <div class="card border-0 shadow-sm rounded-4 p-4 mt-3 d-lg-none">
+            <h2 class="fw-bold mb-1">
+                &#8377; <%= listing.price.toLocaleString("en-IN") %>
+            </h2>
+
+            <h5 class="mb-2"><%= listing.title %></h5>
+
+            <div class="mb-2 text-warning small">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="far fa-star"></i>
+
+                <span class="text-muted ms-1">(<%= listing.reviews.length %>)</span>
+            </div>
+
+            <p class="text-success small mb-3">
+                <i class="fas fa-check-circle me-1"></i>
+                In Stock
+            </p>
+
+            <div class="d-grid gap-2">
+                <form action="/cart/<%= listing._id %>" method="POST">
+                    <input type="hidden" name="quantity" value="1">
+                    <button type="submit" class="btn btn-warning btn-lg fw-semibold">
+                        <i class="fas fa-shopping-cart me-2"></i>
+                        Add to Cart
+                    </button>
+                </form>
+
+                <form action="/payment/buy-now/<%= listing._id %>" method="POST">
+                    <input type="hidden" name="quantity" value="1">
+                    <button class="btn btn-dark btn-lg fw-semibold w-100" type="submit">
+                        <i class="fas fa-bolt me-2"></i>
+                        Buy Now
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <div class="card mt-3 mt-lg-4 p-4 border-0 shadow-sm rounded-4">
+            <h5 class="fw-bold mb-3">
+                <i class="fas fa-align-left me-2"></i>
+                Description
+            </h5>
+            <p class="text-muted mb-0"><%= listing.description %></p>
+        </div>
+
+        <div class="card mt-3 mt-lg-4 p-4 border-0 shadow-sm rounded-4">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h5 class="fw-bold mb-0">
+                    <i class="fas fa-star me-2"></i>
+                    Reviews
+                </h5>
+                <span class="badge bg-light text-dark border">
+                    <%= listing.reviews.length %> total
+                </span>
+            </div>
+
+            <% if (listing.reviews.length === 0) { %>
+                <div class="text-center py-4">
+                    <i class="far fa-star fs-3 text-muted mb-2"></i>
+                    <div class="fw-semibold">No reviews yet</div>
+                    <small class="text-muted">Be the first one to review</small>
+                </div>
+            <% } else { %>
+                <% listing.reviews.forEach((r) => { %>
+                    <div class="review-item mb-3 pb-3 border-bottom">
+                        <div class="d-flex justify-content-between">
+                            <div class="d-flex gap-2">
+                                <div class="review-avatar">
+                                    <%= r.author.username[0] %>
+                                </div>
+
+                                <div>
+                                    <div class="fw-semibold">@<%= r.author.username %></div>
+
+                                    <div class="text-warning small review-stars">
+                                        <%- "&#9733;".repeat(r.rating) %><%- "&#9734;".repeat(5 - r.rating) %>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <span
+                                class="text-dark badge bg-light border d-flex align-items-center review-score"
+                            >
+                                <%= r.rating %>/5
+                            </span>
+                        </div>
+
+                        <p class="text-muted mt-2 mb-0"><%= r.comment %></p>
+                    </div>
+                <% }) %>
+            <% } %>
+
+            <% if (currUser) { %>
+                <div class="review-form mt-4 pt-4 border-top">
+                    <div class="d-flex align-items-center gap-2 mb-3">
+                        <i class="fas fa-pen"></i>
+                        <h6 class="mb-0 fw-bold">Write a Review</h6>
+                    </div>
+
+                    <form
+                        method="POST"
+                        action="/listing/<%= listing._id %>/reviews"
+                        class="needs-validation"
+                        novalidate
+                    >
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold d-block">Rating</label>
+
+                            <div class="star-rating">
+                                <i class="far fa-star star" data-value="1"></i>
+                                <i class="far fa-star star" data-value="2"></i>
+                                <i class="far fa-star star" data-value="3"></i>
+                                <i class="far fa-star star" data-value="4"></i>
+                                <i class="far fa-star star" data-value="5"></i>
+                            </div>
+
+                            <input
+                                type="hidden"
+                                name="review[rating]"
+                                id="ratingInput"
+                                value="0"
+                            />
+
+                            <small class="text-muted">Tap to rate</small>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Comment</label>
+                            <textarea
+                                name="review[comment]"
+                                class="form-control"
+                                rows="3"
+                                placeholder="Write your experience..."
+                                required
+                            ></textarea>
+                            <div class="invalid-feedback">
+                                Please enter a comment.
+                            </div>
+                        </div>
+
+                        <button class="btn btn-dark w-100 fw-semibold">
+                            <i class="fas fa-paper-plane me-2"></i>
+                            Submit Review
+                        </button>
+                    </form>
+                </div>
+            <% } %>
+        </div>
+    </div>
+
+    <div class="col-lg-5 d-none d-lg-block">
+        <div class="card border-0 shadow-sm rounded-4 p-4 buy-box">
+            <h2 class="fw-bold mb-1">
+                &#8377; <%= listing.price.toLocaleString("en-IN") %>
+            </h2>
+
+            <h5 class="mb-3"><%= listing.title %></h5>
+
+            <p class="text-success fw-semibold mb-3">
+                <i class="fas fa-check-circle me-1"></i>
+                In Stock
+            </p>
+
+            <form method="POST">
+                <div class="mb-3">
+                    <label class="fw-semibold mb-1" for="quantity">Quantity</label>
+                    <input
+                        type="number"
+                        id="quantity"
+                        name="quantity"
+                        value="1"
+                        min="1"
+                        class="form-control w-50"
+                    />
+                </div>
+
+                <div class="d-grid gap-2">
+                    <button
+                        type="submit"
+                        formaction="/cart/<%= listing._id %>"
+                        class="btn btn-warning btn-lg fw-semibold"
+                    >
+                        <i class="fas fa-shopping-cart me-2"></i>
+                        Add to Cart
+                    </button>
+
+                    <button
+                        type="submit"
+                        formaction="/payment/buy-now/<%= listing._id %>"
+                        class="btn btn-dark btn-lg fw-semibold"
+                    >
+                        <i class="fas fa-bolt me-2"></i>
+                        Buy Now
+                    </button>
+                </div>
+            </form>
+
+            <div class="mt-4 small text-muted">
+                <div><i class="fas fa-shield-alt me-2"></i>Secure Payment</div>
+                <div><i class="fas fa-truck me-2"></i>Fast Delivery</div>
+                <div><i class="fas fa-undo me-2"></i>7-Day Returns</div>
+            </div>
+
+            <% if (currUser && currUser._id.equals(listing.owner._id)) { %>
+                <div class="mt-4 pt-3 border-top">
+                    <p class="small text-muted mb-2">
+                        <i class="fas fa-tools me-1"></i> Owner Actions
+                    </p>
+
+                    <form
+                        action="/listing/<%= listing._id %>/edit"
+                        method="get"
+                        class="mb-2"
+                    >
+                        <button class="btn btn-outline-dark w-100">
+                            <i class="fas fa-edit me-2"></i>
+                            Edit Listing
+                        </button>
+                    </form>
+
+                    <form
+                        action="/listing/<%= listing._id %>?_method=DELETE"
+                        method="POST"
+                    >
+                        <button
+                            class="btn btn-outline-danger w-100"
+                            onclick="return confirm('Are you sure you want to delete this listing?')"
+                        >
+                            <i class="fas fa-trash me-2"></i>
+                            Delete Listing
+                        </button>
+                    </form>
+                </div>
+            <% } %>
+        </div>
+    </div>
+</div>

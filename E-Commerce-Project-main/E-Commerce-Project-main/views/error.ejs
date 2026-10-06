@@ -1,0 +1,35 @@
+<% layout("/layouts/boilerplate") %>
+
+<div class="error-wrapper">
+
+    <div class="error-card">
+
+        <!-- Code -->
+        <h1 class="error-code">
+            <%= err.statusCode || 404 %>
+        </h1>
+
+        <!-- Title -->
+        <h2 class="error-title">
+            Something went wrong
+        </h2>
+
+        <!-- Message -->
+        <p class="error-message">
+            <%= err.message || "We couldn’t find the page you’re looking for." %>
+        </p>
+
+        <!-- Actions -->
+        <div class="error-actions">
+            <a href="/" class="btn-primary">Go Home</a>
+            <a href="/listings" class="btn-secondary">Browse Products</a>
+        </div>
+
+        <!-- Helper -->
+        <p class="error-helper">
+            If the issue persists, please try again later.
+        </p>
+
+    </div>
+
+</div>

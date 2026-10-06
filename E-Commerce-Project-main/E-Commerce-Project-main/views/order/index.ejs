@@ -1,0 +1,106 @@
+<% layout("/layouts/boilerplate") %>
+
+<div class="orders-shell">
+    <section class="orders-hero">
+        <div>
+            <p class="orders-eyebrow">Your account</p>
+            <h1 class="orders-title">My Orders</h1>
+            <p class="orders-subtitle">
+                Track your recent purchases, revisit order details, and keep an eye on payment status.
+            </p>
+        </div>
+
+        <div class="orders-hero-actions">
+            <a href="/listing" class="orders-secondary-btn">Continue Shopping</a>
+        </div>
+    </section>
+
+    <section class="orders-stats-grid">
+        <article class="orders-stat-card">
+            <span class="orders-stat-label">Total Orders</span>
+            <strong class="orders-stat-value"><%= orderStats.totalOrders %></strong>
+        </article>
+
+        <article class="orders-stat-card">
+            <span class="orders-stat-label">Items Purchased</span>
+            <strong class="orders-stat-value"><%= orderStats.itemsPurchased %></strong>
+        </article>
+
+        <article class="orders-stat-card">
+            <span class="orders-stat-label">Total Spent</span>
+            <strong class="orders-stat-value">₹ <%= orderStats.totalSpent.toLocaleString("en-IN") %></strong>
+        </article>
+    </section>
+
+    <% if (orders.length > 0) { %>
+        <section class="orders-list">
+            <% orders.forEach((order) => { %>
+                <article class="order-card">
+                    <div class="order-card-top">
+                        <div>
+                            <p class="order-meta-label">Order placed</p>
+                            <h2 class="order-card-title">
+                                <%= new Date(order.createdAt).toLocaleDateString("en-IN", {
+                                    day: "numeric",
+                                    month: "short",
+                                    year: "numeric",
+                                }) %>
+                            </h2>
+                        </div>
+
+                        <div class="order-top-right">
+                            <span class="order-status status-<%= order.status %>">
+                                <%= order.status %>
+                            </span>
+                            <span class="order-total">₹ <%= (order.totalAmount || 0).toLocaleString("en-IN") %></span>
+                        </div>
+                    </div>
+
+                    <div class="order-details-grid">
+                        <div class="order-detail-pill">
+                            <span class="order-meta-label">Payment ID</span>
+                            <strong><%= order.paymentId || "Pending confirmation" %></strong>
+                        </div>
+
+                        <div class="order-detail-pill">
+                            <span class="order-meta-label">Items</span>
+                            <strong>
+                                <%= order.items.reduce((sum, item) => sum + (item.quantity || 0), 0) %>
+                            </strong>
+                        </div>
+                    </div>
+
+                    <div class="order-items">
+                        <% order.items.forEach((item) => { %>
+                            <div class="order-item-row">
+                                <div>
+                                    <h3 class="order-item-title"><%= item.title %></h3>
+                                    <p class="order-item-meta">
+                                        Quantity: <%= item.quantity %>
+                                    </p>
+                                </div>
+
+                                <div class="order-item-price">
+                                    ₹ <%= ((item.price || 0) * (item.quantity || 0)).toLocaleString("en-IN") %>
+                                </div>
+                            </div>
+                        <% }) %>
+                    </div>
+                </article>
+            <% }) %>
+        </section>
+    <% } else { %>
+        <section class="orders-empty-state">
+            <div class="orders-empty-icon">
+                <i class="fas fa-box-open"></i>
+            </div>
+
+            <h2 class="orders-empty-title">No orders yet</h2>
+            <p class="orders-empty-text">
+                Once you complete checkout, your purchases will show up here with payment and item details.
+            </p>
+
+            <a href="/listing" class="orders-primary-btn">Explore Products</a>
+        </section>
+    <% } %>
+</div>

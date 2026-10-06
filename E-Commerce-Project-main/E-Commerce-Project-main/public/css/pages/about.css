@@ -1,0 +1,36 @@
+.about-container {
+    max-width: 800px;
+    margin: 40px auto;
+}
+
+/* TITLE */
+.about-title {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+/* SUBTITLE */
+.about-subtitle {
+    font-size: 20px;
+    font-weight: 600;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+/* TEXT */
+.about-text {
+    color: #6b7280;
+    line-height: 1.7;
+    margin-bottom: 16px;
+    font-size: 15px;
+}
+
+.about-text strong {
+    color: #111827;
+    font-weight: 600;
+}
+
+.about-page .about-container {
+    min-height: calc(70vh - 200px);
+}

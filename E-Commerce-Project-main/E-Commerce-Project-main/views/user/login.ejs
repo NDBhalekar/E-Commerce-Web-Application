@@ -1,0 +1,81 @@
+<% layout("/layouts/boilerplate") %>
+
+<div class="auth-container">
+
+    <!-- LEFT SIDE -->
+    <div class="auth-left">
+
+        <div class="auth-left-content">
+
+            <h1 class="auth-brand">e-Commerce Store</h1>
+
+            <h2 class="auth-heading">
+                Welcome back.
+            </h2>
+
+            <p class="auth-subtext">
+                Sign in to access your account and continue your shopping experience.
+            </p>
+
+            <div class="auth-features">
+                <div class="feature-pill">
+                    Secure Login
+                </div>
+                <div class="feature-pill">
+                    Fast Checkout
+                </div>
+                <div class="feature-pill">
+                    Check Orders
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- RIGHT SIDE -->
+    <div class="auth-right">
+
+        <div class="auth-card">
+
+            <h2 class="form-title">Sign in</h2>
+            <p class="form-subtitle">Welcome back! Please enter your details.</p>
+
+            <form action="/login" method="post">
+
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" name="username" required placeholder="Enter username">
+                </div>
+
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" name="password" required placeholder="Enter password">
+                </div>
+
+                <button class="submit-btn">Sign In</button>
+
+            </form>
+
+            <div class="auth-divider">
+                <span>or</span>
+            </div>
+
+            <form action="/login/demo" method="post">
+                <button class="demo-btn" type="submit">Continue with Demo Account</button>
+            </form>
+
+            <p class="demo-note">
+                Demo credentials: <strong>demo</strong> / <strong>demo123456</strong>
+            </p>
+
+            <p class="auth-footer">
+                Don’t have an account?
+                <a href="/signup">Sign up</a>
+            </p>
+
+        </div>
+
+    </div>
+
+</div>

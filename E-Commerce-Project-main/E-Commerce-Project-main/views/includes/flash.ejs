@@ -1,0 +1,164 @@
+<style>
+.flash-toast {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  min-width: 260px;
+  max-width: 320px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  overflow: hidden;
+  z-index: 9999;
+  animation: slideIn 0.4s ease;
+  font-size: 14px;
+}
+
+/* MOBILE VERSION */
+@media (max-width: 576px) {
+  .flash-toast {
+    top: auto;
+    bottom: 16px;
+    left: 16px;
+    right: 16px;
+    max-width: none;
+    width: auto;
+    border-radius: 14px;
+    animation: slideUp 0.4s ease;
+  }
+}
+
+.flash-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 16px;
+  gap: 10px;
+}
+
+.flash-toast.success {
+  border-left: 4px solid #22c55e;
+}
+
+.flash-toast.error {
+  border-left: 4px solid #ef4444;
+}
+
+
+@media (max-width: 576px) {
+  .flash-toast.success,
+  .flash-toast.error {
+    border-left: none;
+    border-top: 4px solid;
+  }
+
+  .flash-toast.success {
+    border-top-color: #22c55e;
+  }
+
+  .flash-toast.error {
+    border-top-color: #ef4444;
+  }
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  opacity: 0.6;
+  padding: 4px;
+}
+
+.progress-bar {
+  height: 3px;
+  width: 100%;
+  background: rgba(0,0,0,0.06);
+  position: relative;
+}
+
+.progress-bar::after {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  animation: progress 4s linear forwards;
+}
+
+.flash-toast.success .progress-bar::after {
+  background: #22c55e;
+}
+
+.flash-toast.error .progress-bar::after {
+  background: #ef4444;
+}
+
+/* Desktop animation */
+@keyframes slideIn {
+  from {
+    transform: translateX(120%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Mobile animation */
+@keyframes slideUp {
+  from {
+    transform: translateY(120%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes progress {
+  from { width: 100%; }
+  to { width: 0%; }
+}
+</style>
+
+<% if (success && success.length) { %>
+  <div class="flash-toast success">
+    <div class="flash-content">
+      <span><%= success %></span>
+      <button class="close-btn">&times;</button>
+    </div>
+    <div class="progress-bar"></div>
+  </div>
+<% } %>
+
+<% if (error && error.length) { %>
+  <div class="flash-toast error">
+    <div class="flash-content">
+      <span><%= error %></span>
+      <button class="close-btn">&times;</button>
+    </div>
+    <div class="progress-bar"></div>
+  </div>
+<% } %>
+
+
+
+<script>
+  document.querySelectorAll(".flash-toast").forEach((toast) => {
+    const closeBtn = toast.querySelector(".close-btn");
+
+    // Auto remove after 4s
+    setTimeout(() => {
+      toast.style.opacity = "0";
+      toast.style.transform = "translateX(120%)";
+      setTimeout(() => toast.remove(), 300);
+    }, 4000);
+
+    // Manual close
+    closeBtn.addEventListener("click", () => {
+      toast.remove();
+    });
+  });
+</script>

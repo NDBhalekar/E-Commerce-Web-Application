@@ -1,0 +1,128 @@
+<% layout("/layouts/boilerplate") %>
+
+<div class="container main-container">
+
+    <!-- HERO -->
+    <div class="row align-items-center hero-section">
+        
+        <div class="col-lg-6">
+            <h1 class="hero-title">
+                Curated essentials <br>
+                for your everyday life.
+            </h1>
+
+            <p class="hero-subtext">
+                Discover our collection of minimalist, high-quality products designed
+                to elevate your workspace and home.
+            </p>
+
+            <div class="hero-buttons">
+                <a href="/listings" class="btn btn-dark hero-btn">
+                    Shop Now →
+                </a>
+                <a href="/listings?category=Electronics" class="btn btn-light hero-btn-outline">
+                    View Electronics
+                </a>
+            </div>
+        </div>
+
+        <div class="col-lg-6">
+            <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1493723843671-1d655e66ac1c?w=1200&q=80" />
+            </div>
+        </div>
+
+    </div>
+
+    <!-- FEATURED -->
+    <div class="section-header">
+        <h5>Featured Products</h5>
+        <a href="/listings">View all →</a>
+    </div>
+
+    <div class="row g-4">
+
+        <% for (let listing of allListings.slice(0,4)) { %>
+            <div class="col-lg-3 col-md-6">
+
+                <a href="/listing/<%= listing._id %>" class="product-link">
+
+                    <div class="product-card">
+
+                            <!-- CLICKABLE AREA -->
+                            <a href="/listing/<%= listing._id %>" class="product-link">
+
+                                <!-- Image -->
+                                <div class="card-image-wrapper">
+                                    <img src="<%= listing.image.url %>" alt="<%= listing.title %>">
+                                    <!-- <span class="badge-custom">Featured</span> -->
+                                </div>
+
+                                <!-- Content -->
+                                <div class="card-body-custom">
+
+                                    <small class="category-text"><%= listing.category %></small>
+
+                                    <h6 class="product-title">
+                                        <%= listing.title %>
+                                    </h6>
+
+                                    <div class="product-price">
+                                        ₹ <%= listing.price %>
+                                    </div>
+
+                                </div>
+
+                            </a>
+
+                            <!-- BUTTON (OUTSIDE LINK) -->
+                            <div class="p-3 pt-0">
+                                <form action="/cart/<%= listing._id %>" method="POST">
+                                    <input type="hidden" name="quantity" value="1">
+                                    <button class="add-btn w-100">
+                                        Add to Cart
+                                    </button>
+                                </form>
+                            </div>
+
+                    </div>
+
+                </a>
+
+            </div>
+        <% } %>
+
+    </div>
+
+    <!-- CATEGORY -->
+    <h5 class="mt-5 mb-3">Shop by Category</h5>
+
+    <div class="row g-4">
+
+        <div class="col-lg-4">
+            <a href="/listing?category=Home%20Office" class="category-banner">
+                <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=600&q=80">
+                <div class="category-overlay"></div>
+                <span>Home Office</span>
+            </a>
+        </div>
+
+        <div class="col-lg-4">
+            <a href="/listing?category=Electronics" class="category-banner">
+                <img src="https://images.unsplash.com/photo-1498049794561-7780e7231661?w=600&q=80">
+                <div class="category-overlay"></div>
+                <span>Electronics</span>
+            </a>
+        </div>
+
+        <div class="col-lg-4">
+            <a href="/listing?category=Furniture" class="category-banner">
+                <img src="https://images.unsplash.com/photo-1505693314120-0d443867891c?w=600&q=80">
+                <div class="category-overlay"></div>
+                <span>Furniture</span>
+            </a>
+        </div>
+
+    </div>
+
+</div>
